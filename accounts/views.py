@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from accounts.serializers import UserSerializer
 from django.contrib.auth.models import auth
 from rest_framework_simplejwt.tokens import RefreshToken
+from .models import User
 
 # Create your views here.
 class UserRegisterAPI(APIView):
@@ -18,7 +19,7 @@ class UserRegisterAPI(APIView):
             serializer.save()
             return Response({
                 'status': 'ok',
-                'message':"OTP send successfully"
+                'message':"OTP send successfully",
             })
 
         except Exception as e:
@@ -26,6 +27,20 @@ class UserRegisterAPI(APIView):
             return Response({
                 'errors': 'something went wrong'
             })
+
+class VerifyEmail(APIView):
+    def get(self, request, token):
+        if token:
+            try:
+                user = User.objects.filter(code=token)[0]
+                print(user)
+                if user:
+                    user.is_verified=True
+                    user.code=''
+                    user.save()
+                    return Response({"message":"success"}, 200)
+            except:
+                return Response({"message":"error"}, 404)
 
 
 class UserLoginAPI(APIView):
@@ -47,9 +62,10 @@ class UserLoginAPI(APIView):
             return Response(
                 {
                     "message": "Invalid Credentials"
-                }
+                },
+                404
             )
         except Exception as e:
             return Response({
                 'errors': 'something went wrong'
-            })
+            }, 400)
