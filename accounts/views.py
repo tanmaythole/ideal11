@@ -17,10 +17,7 @@ class UserRegisterAPI(APIView):
                     'errors': serializer.errors
                 })
             serializer.save()
-            return Response({
-                'status': 'ok',
-                'message':"OTP send successfully",
-            })
+            return Response({'status': 'ok', 'message':"OTP send successfully" }, 200)
 
         except Exception as e:
             print(e)
@@ -59,12 +56,10 @@ class UserLoginAPI(APIView):
                     200
                 )
             
-            return Response(
-                {
+            return Response({
                     "message": "Invalid Credentials"
-                },
-                404
-            )
+                }, 404)
+
         except Exception as e:
             return Response({
                 'errors': 'something went wrong'
