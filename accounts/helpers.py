@@ -21,7 +21,7 @@ def create_verification_code(user, type):
             code = str(user.code)
         return code
     
-    if user.is_verified and type=="ForgotPassword":
+    elif user.is_verified and type=="ForgotPassword":
         try:
             code = uuid.uuid4()
             user.forgot_password_token = code
@@ -29,11 +29,16 @@ def create_verification_code(user, type):
             return code
         except Exception as e:
             return e
+    
+    else:
+        return False
 
 
 def send_mail_link(instance):
     try:
         token = create_verification_code(instance, "EmailVerification")
+        if not token:
+            return False
         subject = "MyIdeal11 : Activate Your New Account!"
         message = f"Hii {instance.first_name}, Welcome to MyIdeal11! Confirm your email by click the link below <br /><a href='http://127.0.0.1:8000/auth/verify-email/{token}'>Click Here</a>"
         email_from = settings.EMAIL_HOST_USER

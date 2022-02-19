@@ -4,6 +4,7 @@ from accounts.serializers import UserSerializer
 from django.contrib.auth.models import auth
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import User
+from .helpers import send_mail_link
 
 # Create your views here.
 class UserRegisterAPI(APIView):
@@ -30,7 +31,7 @@ class VerifyEmail(APIView):
         if token:
             try:
                 user = User.objects.filter(code=token)[0]
-                print(user)
+                
                 if user:
                     user.is_verified=True
                     user.code=''
@@ -64,3 +65,12 @@ class UserLoginAPI(APIView):
             return Response({
                 'errors': 'something went wrong'
             }, 400)
+
+class ResendEmailAPI(APIView):
+    def post(self, request):
+        data = request.data
+        is_mail_sent = send_mail_link(User.objects.filter(email=data['email'])[0])
+        if(is_mail_sent):
+            return Response({"status":"ok", "message":"Email Sent Successfully"}, 200)
+        return Response({"status":"Failed", "message":"Something Went Wrong"}, 401)
+    
