@@ -40,3 +40,23 @@ class User(AbstractUser):
     
     def __str__(self):
         return self.username
+
+
+class Wallet(models.Model):
+    user = models.OneToOneField(to=User, on_delete=models.CASCADE, unique=True)
+    deposited = models.FloatField(default=0.0)
+    bonus = models.FloatField(default=0.0)
+    winnings = models.FloatField(default=0.0)
+    total = models.FloatField(default=0.0)
+
+    class Meta:
+        verbose_name = "Wallet"
+        verbose_name_plural = "Wallets"
+
+    def save(self, *args, **kwargs):
+        self.total = self.deposited + self.winnings + self.bonus
+        return super(Wallet, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.user.username
+    

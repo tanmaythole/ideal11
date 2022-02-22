@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from accounts.serializers import UserSerializer
 from django.contrib.auth.models import auth
 from rest_framework_simplejwt.tokens import RefreshToken
-from .models import User
+from .models import User, Wallet
 from .helpers import send_forgotPassword_mail, send_mail_link
 from rest_framework.permissions import IsAuthenticated
 
@@ -37,6 +37,7 @@ class VerifyEmail(APIView):
                     user.is_verified=True
                     user.code=''
                     user.save()
+                    Wallet(user=user).save()
                     return Response({"message":"success"}, 200)
             except:
                 return Response({"message":"error"}, 404)

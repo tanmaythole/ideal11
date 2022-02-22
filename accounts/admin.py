@@ -11,3 +11,8 @@ class UserAdmin(admin.ModelAdmin):
         ('permissions', {'fields':('is_staff','is_active', 'is_verified','groups')}),
         ('Activity', {'fields':('date_joined', 'last_login')})
     )
+
+@admin.register(Wallet)
+class WalletAdmin(admin.ModelAdmin):
+    search_fields = ('user__username',)         # double underscore is for to target particular column in table like user.username
+    list_display = ('user', 'deposited', 'winnings', 'bonus', 'total')
