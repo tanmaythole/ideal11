@@ -1,6 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from accounts.serializers import UserSerializer
+from accounts.serializers import UserSerializer, WalletSerializer
 from django.contrib.auth.models import auth
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import User, Wallet
@@ -146,3 +146,12 @@ class ChangePasswordAPI(APIView):
             }, 400)
 
             
+# Wallet
+class WalletAPI(APIView):
+        
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request):
+        user = Wallet.objects.get(user=request.user)
+        serializer = WalletSerializer(user)
+        return Response(serializer.data)
