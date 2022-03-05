@@ -1,0 +1,43 @@
+.TabFooter{
+    min-height: 65px;
+    background: #A277D9;
+    position: fixed;
+    bottom: 0;
+    z-index: 50;
+    width: inherit;
+    box-shadow: 0px -6px 6px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #e9d7ff;
+}
+
+.TabFooter .tabSection{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+.TabFooter .tabSection .icon{
+    padding: 2px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.TabFooter .tabSection.active{
+    width: 88px;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+    color: #f6efff;
+}
+
+.TabFooter .tabSection.active .icon{
+    width: 100%;
+    border-radius: 88px;
+    background: #7e37db;
+}
+
+.TabFooter .tabSection span{
+    font-size: 12px;
+}

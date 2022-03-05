@@ -1,9 +1,10 @@
 import React from 'react'
+import Trading from './Containers/trading';
 
 const App = () => {
   return (
     <div>
-      MyIdeal11
+      <Trading />
     </div>
   )
 }

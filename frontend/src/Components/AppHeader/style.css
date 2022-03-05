@@ -1,0 +1,16 @@
+.AppHeader{
+    height: 54px;
+    padding: 0 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.AppHeader span{
+    font-size: 18px;
+    color: #fff;
+    font-weight: 700;
+}
+.icon{
+    cursor: pointer;
+}

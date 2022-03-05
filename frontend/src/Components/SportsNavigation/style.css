@@ -1,0 +1,21 @@
+.sportsNavigation{
+    height: 42px;
+    background: rgba(255, 255, 255, 0.51);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sportsNavigation .sportsCategory{
+    padding: 0 15px;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.sportsNavigation .sportsCategory.active{
+    color: #7000FF;
+    border-bottom: 2px solid #7000FF;
+    box-shadow: 0px 4px 4px -4px rgba(0, 0, 0, 0.25);
+    font-weight: 600;
+}
