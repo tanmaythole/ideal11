@@ -1,16 +1,14 @@
-import React from 'react'
-import AppHeader from '../../Components/AppHeader'
-import SportsNavigation from '../../Components/SportsNavigation'
-import TabFooter from '../../Components/TabFooter'
-import HomeContainer from './HomeContainer'
-import './style.css'
+import React from 'react';
+import { Outlet } from 'react-router-dom';
+import AppHeader from '../../Components/AppHeader';
+import TabFooter from '../../Components/TabFooter';
+import './style.css';
 
 const Trading = () => {
     return (
         <div className='App'>
             <AppHeader />
-            <SportsNavigation />
-            <HomeContainer />
+            <Outlet />
             <TabFooter />
         </div>
     )

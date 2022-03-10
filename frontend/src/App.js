@@ -1,10 +1,16 @@
 import React from 'react'
+import { Route, Routes } from 'react-router-dom';
 import Trading from './Containers/trading';
+import HomeContainer from './Containers/trading/HomeContainer';
 
 const App = () => {
   return (
     <div>
-      <Trading />
+      <Routes>
+        <Route path='/trading' element={<Trading />}>
+          <Route path='/trading/:scat' element={<HomeContainer />} />
+        </Route>
+      </Routes>
     </div>
   )
 }
