@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     # new
     'rest_framework',
     'accounts',
+    'api',
     'application',
 ]
 

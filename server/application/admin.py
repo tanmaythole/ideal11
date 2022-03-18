@@ -14,8 +14,8 @@ class SeriesAdmin(admin.ModelAdmin):
 
 @admin.register(Teams)
 class TeamsAdmin(admin.ModelAdmin):
-    def getSportCategory(self):
+    def Sport_Category(self):
         return self.series.sportsCategory
     
     search_fields = ('series', 'series.sportsCategory', 'name', 'short_name')
-    list_display = ('__str__', 'series', getSportCategory, 'logo')
+    list_display = ('__str__', 'series', Sport_Category, 'logo')
