@@ -43,3 +43,24 @@ class MatchesAdmin(admin.ModelAdmin):
 
     class Media:
         js = ("/static/js/selectajax.js", )
+    
+@admin.register(Players)
+class PlayersAdmin(admin.ModelAdmin):
+    def series(self):
+        return self.team.series
+
+    search_fields = [
+        'name',
+        'short_name',
+        'team__name',
+        'team__short_name',
+        'team__series__name',
+        'role'
+    ]
+    list_display = [
+        '__str__',
+        'team',
+        'role',
+        series,
+        'total_points'
+    ]

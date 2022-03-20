@@ -69,3 +69,24 @@ class Matches(models.Model):
     
     def __str__(self):
         return f"{self.home_team.short_name} vs {self.away_team.short_name}"
+
+class Players(models.Model):
+    roles = [
+        ('wk', 'WK'),
+        ('bat', 'BAT'),
+        ('ar', 'AR'),
+        ('bowl', 'BOWL')
+    ]
+    team = models.ForeignKey(to=Teams, on_delete=models.CASCADE)
+    name = models.CharField(max_length=256)
+    short_name = models.CharField(max_length=256)
+    role = models.CharField(max_length=10, choices=roles)
+    image = models.ImageField(upload_to='images/players')
+    total_points = models.FloatField(default=0.0)
+
+    class Meta:
+        verbose_name = "Player"
+        verbose_name_plural = "Players"
+    
+    def __str__(self):
+        return f"{self.short_name}"
