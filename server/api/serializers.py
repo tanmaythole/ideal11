@@ -23,3 +23,9 @@ class MatchSerializer(serializers.ModelSerializer):
         model = Matches
         fields = '__all__'
         depth = 1
+    
+class PlayerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Players
+        fields = '__all__'
+        depth = 1

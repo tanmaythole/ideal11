@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from application.models import Matches, Series
+from application.models import Matches
 from api.serializers import MatchSerializer
 
 class MatchesAPI(APIView):

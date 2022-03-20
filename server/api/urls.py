@@ -6,4 +6,5 @@ urlpatterns = [
     path('series/', SeriesAPI.as_view(), name="Series"),
     path('teams/', TeamsAPI.as_view(), name="Teams"),
     path('matches/', MatchesAPI.as_view(), name="Matches"),
+    path('players/', PlayersAPI.as_view(), name="Players"),
 ]
