@@ -9,7 +9,7 @@ class SportsAdmin(admin.ModelAdmin):
 
 @admin.register(Series)
 class SeriesAdmin(admin.ModelAdmin):
-    search_fields = ('name', 'sportCategory')
+    search_fields = ('name', 'sportCategory__name')
     list_display = ('name', 'sportsCategory', 'noOfMatches')
 
 @admin.register(Teams)
@@ -17,12 +17,24 @@ class TeamsAdmin(admin.ModelAdmin):
     def Sport_Category(self):
         return self.series.sportsCategory
     
-    search_fields = ('series', 'series.sportsCategory', 'name', 'short_name')
+    search_fields = [
+        'series__name', 
+        'name', 
+        'short_name',
+        'series__sportsCategory__name'
+    ]
     list_display = ('__str__', 'series', Sport_Category, 'logo')
 
 @admin.register(Matches)
 class MatchesAdmin(admin.ModelAdmin):
-    search_fields = ('series', 'home_team', 'away_team')
+    search_fields = [
+        'series__name', 
+        'home_team__name', 
+        'away_team__name', 
+        'home_team__short_name', 
+        'away_team__short_name',
+        'match_status'
+    ]
     list_display = ('__str__', 'series', 'match_status', 'datetime')
 
     class Media:
