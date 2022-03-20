@@ -19,3 +19,11 @@ class TeamsAdmin(admin.ModelAdmin):
     
     search_fields = ('series', 'series.sportsCategory', 'name', 'short_name')
     list_display = ('__str__', 'series', Sport_Category, 'logo')
+
+@admin.register(Matches)
+class MatchesAdmin(admin.ModelAdmin):
+    search_fields = ('series', 'home_team', 'away_team')
+    list_display = ('__str__', 'series', 'match_status', 'datetime')
+
+    class Media:
+        js = ("/static/js/selectajax.js", )
