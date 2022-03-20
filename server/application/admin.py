@@ -9,13 +9,17 @@ class SportsAdmin(admin.ModelAdmin):
 
 @admin.register(Series)
 class SeriesAdmin(admin.ModelAdmin):
-    search_fields = ('name', 'sportCategory__name')
+    search_fields = ('name', 'sportsCategory__name')
     list_display = ('name', 'sportsCategory', 'noOfMatches')
 
 @admin.register(Teams)
 class TeamsAdmin(admin.ModelAdmin):
     def Sport_Category(self):
         return self.series.sportsCategory
+
+    def image_tag(self, obj):
+        from django.utils.html import mark_safe
+        return mark_safe('<img src="/media/%s" height="50px" width="50px" />' % (obj.logo))
     
     search_fields = [
         'series__name', 
@@ -23,7 +27,7 @@ class TeamsAdmin(admin.ModelAdmin):
         'short_name',
         'series__sportsCategory__name'
     ]
-    list_display = ('__str__', 'series', Sport_Category, 'logo')
+    list_display = ('__str__', 'series', Sport_Category, 'image_tag')
 
 @admin.register(Matches)
 class MatchesAdmin(admin.ModelAdmin):
