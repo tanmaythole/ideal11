@@ -17,3 +17,9 @@ class TeamSerializer(serializers.ModelSerializer):
     class Meta:
         model = Teams
         fields = ('__all__')
+    
+class MatchSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Matches
+        fields = '__all__'
+        depth = 1
