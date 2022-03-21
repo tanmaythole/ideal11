@@ -44,8 +44,8 @@ class MatchesAdmin(admin.ModelAdmin):
     class Media:
         js = ("/static/js/selectTeams.js", )
     
-@admin.register(CricketPlayers)
-class CricketPlayersAdmin(admin.ModelAdmin):
+@admin.register(Players)
+class PlayersAdmin(admin.ModelAdmin):
     search_fields = [
         'name',
         'short_name',

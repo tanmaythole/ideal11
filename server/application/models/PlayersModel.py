@@ -1,10 +1,9 @@
 from django.db import models
 
-from application.models import Teams
 from application.models import Sports
 
 
-class CricketPlayers(models.Model):
+class Players(models.Model):
     roles = [
         ('wk', 'WK'),
         ('bat', 'BAT'),
