@@ -1,14 +1,14 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from application.models import Players
 from api.serializers import PlayerSerializer
+from application.models import CricketPlayers
 
 class PlayersAPI(APIView):
 
     def get(self, request):
         try:
-            players = Players.objects.all()
+            players = CricketPlayers.objects.all()
             serializer = PlayerSerializer(players, many=True)
 
             return Response(

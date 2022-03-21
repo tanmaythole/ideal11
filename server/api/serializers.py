@@ -26,6 +26,6 @@ class MatchSerializer(serializers.ModelSerializer):
     
 class PlayerSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Players
+        model = CricketPlayers
         fields = '__all__'
         depth = 1

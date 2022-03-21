@@ -14,3 +14,19 @@ def get_teams(request):
     elif series:
         data = list(Teams.objects.filter(series=series).values())
     return HttpResponse(json.dumps(data), content_type="application/json")
+
+@login_required
+def get_roles(request):
+    sport = Sports.objects.get(id=request.GET.get('sport'))
+    roles = []
+    if sport.name=='cricket':
+        roles = [
+            ['wk', 'WK'],
+            ['bat', 'BAT'],
+            ['ar', 'AR'],
+            ['bowl', 'BOWL']
+        ]
+    elif sport.name=='football':
+        roles = []
+    
+    return HttpResponse(json.dumps(roles), content_type="application/json")
