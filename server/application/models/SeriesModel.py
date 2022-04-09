@@ -1,5 +1,4 @@
 from django.db import models
-from application.models import Sports
 
 class Series(models.Model):
     types_of_series = [
@@ -10,7 +9,7 @@ class Series(models.Model):
     ]
 
     name = models.CharField(max_length=100)
-    sportsCategory = models.ForeignKey(to=Sports, on_delete=models.CASCADE)
+    sportsCategory = models.ForeignKey(to='application.sports', on_delete=models.CASCADE)
     typeOfSeries = models.CharField(choices=types_of_series, max_length=4)
     noOfMatches = models.IntegerField()
     start_date = models.DateTimeField()

@@ -1,12 +1,12 @@
 from django.db import models
-
-from application.models import Series
+from application.models.PlayersModel import TeamPlayers
 
 class Teams(models.Model):
-    series = models.ForeignKey(to=Series, on_delete=models.CASCADE)
+    series = models.ForeignKey(to='application.series', on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     short_name = models.CharField(max_length=4)
     logo = models.ImageField(upload_to='images/teams')
+    select_players = models.ManyToManyField("application.players")
 
     class Meta:
         verbose_name = 'Team'
@@ -14,4 +14,10 @@ class Teams(models.Model):
     
     def __str__(self) -> str:
         return self.name + "(" + self.short_name + ")"
-
+    
+    def save(self, *args, **kwargs):
+        team = super(Teams, self).save(*args, **kwargs)
+        players = self.select_players.all()
+        
+        for player in players:
+            TeamPlayers(team=self, player=player).save()

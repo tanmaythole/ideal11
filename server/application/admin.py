@@ -28,6 +28,7 @@ class TeamsAdmin(admin.ModelAdmin):
         'series__sportsCategory__name'
     ]
     list_display = ('__str__', 'series', Sport_Category, 'image_tag')
+    filter_horizontal = ('select_players', )
 
 @admin.register(Matches)
 class MatchesAdmin(admin.ModelAdmin):
@@ -60,3 +61,22 @@ class PlayersAdmin(admin.ModelAdmin):
 
     class Media:
         js = ("/static/js/selectRoles.js", )
+    
+@admin.register(TeamPlayers)
+class TeamPlayersdmin(admin.ModelAdmin):
+    search_fields = [
+        'team__name',
+        'team__short_name',
+        'team__series__name',
+        'player__name',
+        'player__short_name',
+        'player__role',
+        'player__sport__name',
+        'player__nationality'
+    ]
+
+    list_display = [
+        '__str__',
+        'team',
+        'total_points'
+    ]
