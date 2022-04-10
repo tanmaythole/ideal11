@@ -36,3 +36,28 @@ class TeamPlayers(models.Model):
     
     def __str__(self):
         return self.player.short_name
+    
+class CricketPlayersForMatch(models.Model):
+    match = models.ForeignKey(to='application.matches', on_delete=models.CASCADE)
+    player = models.ForeignKey(to=TeamPlayers, on_delete=models.CASCADE)
+    is_playing = models.BooleanField(default=False)
+    runs = models.IntegerField(default=0)
+    fours = models.IntegerField(default=0)
+    sixes = models.IntegerField(default=0)
+    strike_rate = models.FloatField(default=0.0)
+    balls_faced = models.IntegerField(default=0)
+    is_duck = models.BooleanField(default=False)
+    is_out = models.BooleanField(default=False)
+    overs_bowled = models.FloatField(default=0.0)
+    wickets = models.IntegerField(default=0)
+    maiden_over = models.IntegerField(default=0)
+    economy = models.FloatField(default=0.0)
+    catch = models.IntegerField(default=0)
+    total_points = models.FloatField(default=0.0)
+
+    def __str__(self):
+        return f"{self.player}"
+    
+    class Meta:
+        verbose_name = "Cricket Player For Match (points)"
+        verbose_name_plural = "Cricket Players For Match (Points)"

@@ -80,3 +80,24 @@ class TeamPlayersdmin(admin.ModelAdmin):
         'team',
         'total_points'
     ]
+
+@admin.register(CricketPlayersForMatch)
+class CricketPlayersForMatchAdmin(admin.ModelAdmin):
+    search_fields = [
+        'match__home_team__name',
+        'match__home_team__short_name',
+        'match__away_team__name',
+        'match__away_team__short_name',
+        'match__series__name',
+        'player__player__name',
+        'player__player__short_name',
+        'player__player__role',
+        'player__player__sport__name',
+        'player__player__nationality'
+    ]
+    list_display = [
+        '__str__',
+        'match',
+        'is_playing',
+        'total_points'
+    ]
