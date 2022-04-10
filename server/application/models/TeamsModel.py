@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, transaction
 from application.models.PlayersModel import TeamPlayers
 
 class Teams(models.Model):
@@ -14,10 +14,11 @@ class Teams(models.Model):
     
     def __str__(self) -> str:
         return self.name + "(" + self.short_name + ")"
-    
+
     def save(self, *args, **kwargs):
-        team = super(Teams, self).save(*args, **kwargs)
-        players = self.select_players.all()
-        
-        for player in players:
+        super(Teams, self).save(*args, **kwargs)      
+        transaction.on_commit(self.createTeamPlayers)
+    
+    def createTeamPlayers(self):
+        for player in self.select_players.all():
             TeamPlayers(team=self, player=player).save()
