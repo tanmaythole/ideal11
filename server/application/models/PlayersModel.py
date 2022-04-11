@@ -40,6 +40,8 @@ class TeamPlayers(models.Model):
 class CricketPlayersForMatch(models.Model):
     match = models.ForeignKey(to='application.matches', on_delete=models.CASCADE)
     player = models.ForeignKey(to=TeamPlayers, on_delete=models.CASCADE)
+    buy_price = models.IntegerField(default=0)
+    sell_price = models.IntegerField(default=0)
     is_playing = models.BooleanField(default=False)
     runs = models.IntegerField(default=0)
     fours = models.IntegerField(default=0)

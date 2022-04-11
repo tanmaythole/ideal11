@@ -101,3 +101,10 @@ class CricketPlayersForMatchAdmin(admin.ModelAdmin):
         'is_playing',
         'total_points'
     ]
+
+    fieldsets = (
+        (None, {'fields': ('match', 'player')}),
+        ('Buy/Sell Prices', {'fields': ('buy_price', 'sell_price')}),
+        ('Stats & Scores', {'fields': ('is_playing', 'runs', 'fours', 'sixes', 'strike_rate', 'balls_faced', 'is_duck', 'is_out', 'overs_bowled', 'wickets', 'maiden_over', 'economy', 'catch')}),
+        ('Points', {'fields': ('total_points',)})
+    )
