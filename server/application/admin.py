@@ -103,8 +103,41 @@ class CricketPlayersForMatchAdmin(admin.ModelAdmin):
     ]
 
     fieldsets = (
-        (None, {'fields': ('match', 'player')}),
-        ('Buy/Sell Prices', {'fields': ('buy_price', 'sell_price')}),
-        ('Stats & Scores', {'fields': ('is_playing', 'runs', 'fours', 'sixes', 'strike_rate', 'balls_faced', 'is_duck', 'is_out', 'overs_bowled', 'wickets', 'maiden_over', 'economy', 'catch')}),
+        (None, {
+            'fields': (
+                'match', 
+                'player'
+                )
+            }
+        ),
+        ('Shares & Prices', {
+            'fields': (
+                'buy_price', 
+                'sell_price', 
+                'no_of_shares_for_buy', 
+                'shares_available_for_buy', 
+                'no_of_shares_for_sell', 
+                'shares_available_for_sell'
+                )
+            }
+        ),
+        ('Stats & Scores', {
+            'fields': (
+                'is_playing', 
+                'runs', 
+                'fours', 
+                'sixes', 
+                'strike_rate', 
+                'balls_faced', 
+                'is_duck', 
+                'is_out', 
+                'overs_bowled', 
+                'wickets', 
+                'maiden_over', 
+                'economy', 
+                'catch'
+                )
+            }
+        ),
         ('Points', {'fields': ('total_points',)})
     )

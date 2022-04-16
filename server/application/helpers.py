@@ -12,3 +12,10 @@ def addPlayersForMatch(sender, instance, created, **kwargs):
             CricketPlayersForMatch(match=instance, player=i).save()
         for i in away_team_players:
             CricketPlayersForMatch(match=instance, player=i).save()
+        
+@receiver(post_save, sender=CricketPlayersForMatch)
+def cricketPlayersForMatchOnSave(sender, instance, created, **kwargs):
+    if created:
+        instance.shares_available_for_buy = instance.no_of_shares_for_buy
+        instance.shares_available_for_sell = instance.no_of_shares_for_sell
+        instance.save()
