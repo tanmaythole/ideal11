@@ -3,11 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import Timer from '../Timer';
 import './style.css';
 
-const MatchBox = ({ data }) => {
+const MatchBox = ({ data, from }) => {
     let navigate = useNavigate();
 
     const handleClick = () => {
-        navigate(`/trading/cricket/${data.id}`)
+        if(from==='portfolio'){
+            // redirect to match details
+        } else {
+            navigate(`/trading/cricket/${data.id}`)
+        }
     }
     return (
         <div className='match-block' onClick={handleClick}>

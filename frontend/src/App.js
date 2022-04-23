@@ -2,6 +2,7 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom';
 import Trading from './Containers/trading';
 import HomeContainer from './Containers/trading/HomeContainer';
+import PortfolioContainer from './Containers/trading/PortfolioContainer';
 
 const App = () => {
   return (
@@ -9,7 +10,7 @@ const App = () => {
       <Routes>
         <Route path='/trading' element={<Trading />}>
           <Route path='/trading' element={<HomeContainer />} />
-          <Route path='/trading/:scat' element={<HomeContainer />} />
+          <Route path='/trading/portfolio' element={<PortfolioContainer />} />
         </Route>
       </Routes>
     </div>

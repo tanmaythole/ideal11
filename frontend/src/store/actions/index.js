@@ -11,3 +11,10 @@ export const setMatches = (data) => {
         payload: data
     }
 }
+
+export const setCurrentSport = (data) => {
+    return {
+        type: 'SET_CURRENT_SPORT',
+        payload: data
+    }
+}

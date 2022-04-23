@@ -1,15 +1,13 @@
 import React, { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
 import './style.css';
 import axios from '../../axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSports } from '../../store/actions';
+import { setCurrentSport, setSports } from '../../store/actions';
 
 const SportsNavigation = () => {
-    const { scat } = useParams();
-    let navigate = useNavigate();
     let dispatch = useDispatch();
     let sports = useSelector(state => state.sportsReducer);
+    let currSport = useSelector(state => state.currentSportReducer);
 
     useEffect(() => {
         axios.get(`/api/sports`)
@@ -25,7 +23,7 @@ const SportsNavigation = () => {
     return (
         <div className='sportsNavigation'>
             {sports.map(e => {
-                return <div key={e.id} className={`sportsCategory ${scat===e.name?'active':''}`} onClick={() => navigate(`/trading/${e.name}`)}>
+                return <div key={e.id} className={`sportsCategory ${currSport===e.name?'active':''}`} onClick={() => dispatch(setCurrentSport(e.name))}>
                             <span>{e.name}</span>
                         </div>
             })}
