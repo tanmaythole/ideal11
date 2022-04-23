@@ -19,7 +19,7 @@ const PortfolioContainer = () => {
         axios.get('/api/matches/', {
             params: {
                 sport: currSport,
-                type: currSport
+                type: matchStatus
             }
         })
         .then(res => {
