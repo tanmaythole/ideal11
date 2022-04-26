@@ -16,7 +16,8 @@ class PlayersAPI(APIView):
             return Response(
                 {
                     "status":"ok",
-                    "data":serializer.data
+                    "match": serializer.data[0]['match'],
+                    "data": serializer.data
                 }, 200
             )
         except Exception as e:

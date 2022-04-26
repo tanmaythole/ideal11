@@ -36,6 +36,7 @@ class TeamPlayerSerializer(serializers.ModelSerializer):
         fields = ('player', 'total_points')
 
 class PlayerForMatchSerializer(serializers.ModelSerializer):
+    match = MatchSerializer()
     player = TeamPlayerSerializer()
     class Meta:
         model = CricketPlayersForMatch
