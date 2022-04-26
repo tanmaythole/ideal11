@@ -31,9 +31,12 @@ class PlayerSerializer(serializers.ModelSerializer):
 
 class TeamPlayerSerializer(serializers.ModelSerializer):
     player = PlayerSerializer()
+    team = TeamSerializer()
     class Meta:
         model = TeamPlayers
-        fields = ('player', 'total_points')
+        # fields = ('player', 'total_points')
+        fields = '__all__'
+        
 
 class PlayerForMatchSerializer(serializers.ModelSerializer):
     match = MatchSerializer()

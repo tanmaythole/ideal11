@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../../../axios';
 import MatchDetailHeader from '../../../Components/MatchDetailHeader';
+import PlayerBox from '../../../Components/PlayerBox';
+import style from './style.module.css';
 
 const PlayersContainer = () => {
     const [loader, setLoader] = useState(true);
@@ -26,6 +28,13 @@ const PlayersContainer = () => {
     return loader?("Loading"):(
         <div>
             <MatchDetailHeader data={matchDetails} />
+            <div className='container'>
+                <div className={style.playerContainer}>
+                    {players.map(e => {
+                        return <PlayerBox data={e} key={e.id} />
+                    })}
+                </div>
+            </div>
         </div>
     )
 }
