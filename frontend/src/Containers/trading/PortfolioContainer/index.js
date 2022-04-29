@@ -1,15 +1,19 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, useSearchParams } from 'react-router-dom';
+import { Navigate, useNavigate, useSearchParams } from 'react-router-dom';
 import axios from '../../../axios';
+import Button from '../../../Components/Button';
 import MatchBox from '../../../Components/MatchBox';
 import MatchStatusNavigation from '../../../Components/MatchStatusNavigation';
+import NoDataComponent from '../../../Components/NoDataComponent';
 import SportsNavigation from '../../../Components/SportsNavigation';
 import { setMatches } from '../../../store/actions';
 
 const PortfolioContainer = () => {
     const [params] = useSearchParams();
     let matchStatus = params.get('match_status') || 'upcoming';
+
+    let navigate = useNavigate();
 
     let dispatch = useDispatch();
     let currSport = useSelector(state => state.currentSportReducer);
@@ -39,9 +43,18 @@ const PortfolioContainer = () => {
             <SportsNavigation />
             <div className='container'>
                 <MatchStatusNavigation />
-                {matches.map(e => {
-                    return <MatchBox data={e} key={e.id} from='portfolio' />
-                })}
+                {matches.length?(
+                    matches.map(e => {
+                        return <MatchBox data={e} key={e.id} from='portfolio' />
+                    })
+                ):(
+                    <NoDataComponent>
+                        <h3>You haven't joined any contest</h3>
+                        <Button onclick={() => navigate('/trading')}>
+                            View Upcoming Matches
+                        </Button>
+                    </NoDataComponent>
+                )}
             </div>
         </div>
     )

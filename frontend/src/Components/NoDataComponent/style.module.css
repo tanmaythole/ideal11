@@ -1,0 +1,12 @@
+.noDataComponent {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    top: 120px;
+    position: relative;
+}
+.noDataComponent img {
+    width: 120px;
+    padding-bottom: 30px;
+}

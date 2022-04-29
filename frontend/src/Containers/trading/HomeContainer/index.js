@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from '../../../axios';
 import { setMatches } from '../../../store/actions';
 import MatchBox from '../../../Components/MatchBox';
-import logo from '../../../assets/images/logo.png';
+import NoDataComponent from '../../../Components/NoDataComponent';
 
 const HomeContainer = () => {
   let dispatch = useDispatch();
@@ -40,11 +40,10 @@ const HomeContainer = () => {
                 })}
               </div>
             ):(
-              <div className='stayTunedMsgBlock'>
-                <img src={logo} />
+              <NoDataComponent>
                 <h3>Stay Tuned!!</h3>
-                Matches will open shortly
-              </div>
+                Matches will Open Shortly
+              </NoDataComponent>
             )}
           </div>
       </div>
