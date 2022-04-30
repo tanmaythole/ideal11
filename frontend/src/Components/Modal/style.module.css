@@ -1,0 +1,41 @@
+.modal {
+    position: fixed;
+    top: 0;
+    width: 548px;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    overflow-x: hidden;
+}
+
+.modalMain {
+    position: relative;
+    background: white;
+    width: 80%;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.displayBlock {
+    display: block;
+}
+
+.displayNone {
+    display: none;
+}
+
+.modalHeader{
+    min-height: 42px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: #7e37db;
+    color: #fff;
+}
+.modalBody{
+    padding: 15px 20px;
+}

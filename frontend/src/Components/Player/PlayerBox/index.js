@@ -1,7 +1,8 @@
 import React from 'react';
 import style from './style.module.css';
+import Button from '../../Button';
 
-const PlayerBox = ({ data }) => {
+const PlayerBox = ({ data, handleToggleModal }) => {
     return (
         <div className={style.playerBox}>
             <div className={style.playerDetails}>
@@ -22,16 +23,23 @@ const PlayerBox = ({ data }) => {
             <div className={style.playerPrice}>
                 <div className={style.playerBuy}>
                     <div>Bought : 0</div>
-                    <button className={style.buybtn}>
+                    <Button 
+                        margin='5px 0'
+                        onclick={() => handleToggleModal(data, 'Buy')}
+                    >
                         Buy &#8377;{data.buy_price}
-                    </button>
+                    </Button>
                 </div>
                 <div className={style.playerSell}>
                     <div>Sell : 0</div>
-                    <button className={style.sellbtn}>
+                    <Button 
+                        bg="#D9C97787" 
+                        color="#333" 
+                        margin='5px 0'
+                        onclick={() => handleToggleModal(data, 'Sell')}
+                    >
                         Sell &#8377; {data.sell_price}
-
-                    </button>
+                    </Button>
                 </div>
             </div>
         </div>

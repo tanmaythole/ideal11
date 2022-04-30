@@ -1,0 +1,54 @@
+.playerDetails{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+}
+.playerImage{
+    width: 80px;
+    height: 80px;
+}
+.teamNameBlock {
+    background: #333;
+    padding: 3px 15px;
+    width: fit-content;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.priceContainer{
+    background: #eeeeee;
+    padding: 30px;
+    margin-top: 20px;
+    margin: inherit;
+    display: flex;
+    flex-direction: column;
+}
+.priceContainer div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+.noOfShareBtn {
+    padding: 0px !important;
+    border: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+.noOfShareBtn p{
+    margin: 0 10px !important;
+}
+.noOfShareBtn button{
+    padding: 5px 15px;
+    border: none;
+    background: #7e37db;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+}

@@ -27,9 +27,13 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    text-align: center;
 }
 .playerBuy{
     color: #9949FF;
+}
+.playerSell{
+    color: #7a6600;
 }
 .playerPrice button{
     width: 100%;
@@ -37,13 +41,4 @@
     border-radius: 10px;
     cursor: pointer;
     border: 1px solid #333;
-}
-.buybtn {
-    background: #9949FF;
-    color: #fff;
-}
-.sellbtn{
-    background: #D9C97787;
-    color: #333;
-
 }
