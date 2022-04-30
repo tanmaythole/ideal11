@@ -25,12 +25,18 @@ const PlayerModal = ({ show, handleClose, data }) => {
 
     useEffect(() => {
         changeData();
-    }, [noOfShares])    
+    }, [noOfShares])
+    
+    const onClose = () => {
+        setNoOfShares(0);
+        setPlayerPricePerShare(0);
+        handleClose();
+    }
     
 
     return (
         <Modal show={show}>
-            <Modal.Header bg={bg} color={color} onClose={handleClose} >
+            <Modal.Header bg={bg} color={color} onClose={onClose} >
                 {type} Player
             </Modal.Header>
             <Modal.Body padding='0'>

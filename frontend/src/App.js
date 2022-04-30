@@ -1,5 +1,7 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom';
+import LoginContainer from './Containers/AuthContainer/LoginContainer';
+import SignupContainer from './Containers/AuthContainer/SignupContainer';
 import Trading from './Containers/trading';
 import HomeContainer from './Containers/trading/HomeContainer';
 import PlayersContainer from './Containers/trading/PlayersContainer';
@@ -9,7 +11,7 @@ import WalletContainer from './Containers/trading/WalletContainer';
 
 const App = () => {
   return (
-    <div>
+    <div className='App'>
       <Routes>
         <Route path='/' element={<Trading />}>
           <Route path='/trading' element={<HomeContainer />} />
@@ -18,6 +20,8 @@ const App = () => {
           <Route path='/profile' element={<ProfileContainer />} />
           <Route path='/wallet' element={<WalletContainer />} />
         </Route>
+        <Route path='/login' element={<LoginContainer />} />
+        <Route path='/signup' element={<SignupContainer />} />
       </Routes>
     </div>
   )

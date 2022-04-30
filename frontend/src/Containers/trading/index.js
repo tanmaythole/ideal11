@@ -6,7 +6,7 @@ import './style.css';
 
 const Trading = () => {
     return (
-        <div className='App'>
+        <div>
             <AppHeader />
             <Outlet />
             <TabFooter />
@@ -14,4 +14,4 @@ const Trading = () => {
     )
 }
 
-export default Trading
+export default Trading;

@@ -1,0 +1,11 @@
+.authComponent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+}
+.logo{
+    width: 160px;
+    padding: 15px;
+}
