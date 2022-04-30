@@ -1,0 +1,21 @@
+.alert {
+    width: 548px;
+    top: 60px;
+    position: fixed;
+}
+.alertBox {
+    width: 80%;
+    margin: auto;
+    /* border: 1px solid #333; */
+    padding: 10px 20px;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    position: relative;
+    border-radius: 10px;
+}
+.closeIcon{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}

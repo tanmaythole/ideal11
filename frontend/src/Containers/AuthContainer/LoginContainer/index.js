@@ -4,8 +4,11 @@ import AuthComponent from '../../../Components/AuthComponent';
 import Button from '../../../Components/Button';
 import Input from '../../../Components/Input';
 import style from './style.module.css';
+import { useDispatch } from 'react-redux';
+import { setAlert } from '../../../store/actions';
 
 const LoginContainer = () => {
+    let dispatch = useDispatch();
     const [formData, setFormData] = useState(
         {
             "email": "",
@@ -31,7 +34,8 @@ const LoginContainer = () => {
                 localStorage.setItem('refreshToken', data.refresh);
             })
             .catch(err => {
-                console.log(err.response.data);
+                let error = err.response.data;
+                dispatch(setAlert({'type':'danger', 'message':error.message}));
             })
     }
     

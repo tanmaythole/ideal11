@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
 import axios from '../../../axios';
 import AuthComponent from '../../../Components/AuthComponent';
 import Button from '../../../Components/Button';
 import Input from '../../../Components/Input';
+import { setAlert } from '../../../store/actions';
 import style from './style.module.css';
 
 const SignupContainer = () => {
+    let dispatch = useDispatch();
+
     const [formData, setFormData] = useState(
         {
             "first_name": "",
@@ -25,7 +29,8 @@ const SignupContainer = () => {
                 console.log(res);
             })
             .catch(err => {
-                console.log(err);
+                let error = err.response.data;
+                dispatch(setAlert({'type':'danger', 'message':error.message}));
             })
     }
 
