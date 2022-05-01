@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useNavigate, useSearchParams } from 'react-router-dom';
-import axios from '../../../axios';
+import axiosInstance from '../../../axios';
 import Button from '../../../Components/Button';
 import MatchBox from '../../../Components/MatchBox';
 import MatchStatusNavigation from '../../../Components/MatchStatusNavigation';
@@ -20,7 +20,7 @@ const PortfolioContainer = () => {
     let matches = useSelector(state => state.matchesReducer)
     
     useEffect(() => {
-        axios.get('/api/matches/', {
+        axiosInstance.get('/api/matches/', {
             params: {
                 sport: currSport,
                 type: matchStatus

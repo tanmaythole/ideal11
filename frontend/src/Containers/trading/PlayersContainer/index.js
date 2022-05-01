@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from '../../../axios';
+import axiosInstance from '../../../axios';
 import MatchDetailHeader from '../../../Components/MatchDetailHeader';
 import PlayerBox from '../../../Components/Player/PlayerBox';
 import PlayerModal from '../../../Components/Player/PlayerModal';
@@ -22,7 +22,7 @@ const PlayersContainer = () => {
     }
 
     useEffect(() => {
-        axios.get('/api/players/', {
+        axiosInstance.get('/api/players/', {
             params: {
                 match: 5
             }

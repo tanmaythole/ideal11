@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import axios from '../../../axios';
+import axiosInstance from '../../../axios';
 import AuthComponent from '../../../Components/AuthComponent';
 import Button from '../../../Components/Button';
 import Input from '../../../Components/Input';
-import { setAlert } from '../../../store/actions';
+import { setAlert, setLogin } from '../../../store/actions';
 import style from './style.module.css';
 
 const SignupContainer = () => {
@@ -24,9 +24,14 @@ const SignupContainer = () => {
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        axios.post('/api/signup/', formData)
+        axiosInstance.post('/api/signup/', formData)
             .then(res => {
-                console.log(res);
+                let data = res.data;
+                if (data.access) {
+                    localStorage.setItem('accessToken', data.access);
+                    localStorage.setItem('refreshToken', data.refresh);
+                    dispatch(setLogin());
+                }
             })
             .catch(err => {
                 let error = err.response.data;

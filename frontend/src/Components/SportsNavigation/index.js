@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './style.css';
-import axios from '../../axios';
+import axiosInstance from '../../axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentSport, setSports } from '../../store/actions';
 
@@ -10,7 +10,7 @@ const SportsNavigation = () => {
     let currSport = useSelector(state => state.currentSportReducer);
 
     useEffect(() => {
-        axios.get(`/api/sports`)
+        axiosInstance.get(`/api/sports`)
             .then(res => {
                 dispatch(setSports(res.data.data));
             })

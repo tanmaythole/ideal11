@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom';
 import AlertMessage from './Components/AlertMessage';
+import AuthContainer from './Containers/AuthContainer';
 import LoginContainer from './Containers/AuthContainer/LoginContainer';
 import SignupContainer from './Containers/AuthContainer/SignupContainer';
 import Trading from './Containers/trading';
@@ -22,8 +23,11 @@ const App = () => {
           <Route path='/profile' element={<ProfileContainer />} />
           <Route path='/wallet' element={<WalletContainer />} />
         </Route>
-        <Route path='/login' element={<LoginContainer />} />
-        <Route path='/signup' element={<SignupContainer />} />
+
+        <Route path='/' element={<AuthContainer />}>
+          <Route path='/login' element={<LoginContainer />} />
+          <Route path='/signup' element={<SignupContainer />} />
+        </Route>
       </Routes>
     </div>
   )

@@ -1,16 +1,21 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Navigate, Outlet } from 'react-router-dom';
 import AppHeader from '../../Components/AppHeader';
 import TabFooter from '../../Components/TabFooter';
 import './style.css';
 
 const Trading = () => {
-    return (
+    const isLoggedIn = useSelector(state => state.loginReducer);
+
+    return isLoggedIn?(
         <div>
             <AppHeader />
             <Outlet />
             <TabFooter />
         </div>
+    ):(
+        <Navigate to='login' />
     )
 }
 

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import './style.css';
 import SportsNavigation from '../../../Components/SportsNavigation';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from '../../../axios';
+import axiosInstance from '../../../axios';
 import { setMatches } from '../../../store/actions';
 import MatchBox from '../../../Components/MatchBox';
 import NoDataComponent from '../../../Components/NoDataComponent';
@@ -13,7 +13,7 @@ const HomeContainer = () => {
   let currSport = useSelector(state => state.currentSportReducer);
 
   useEffect(() => {
-    axios.get('/api/matches/', {
+    axiosInstance.get('/api/matches/', {
       params: {
         sport: currSport,
         type: 'upcoming'

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import axios from '../../../axios';
+import axiosInstance from '../../../axios';
 import AuthComponent from '../../../Components/AuthComponent';
 import Button from '../../../Components/Button';
 import Input from '../../../Components/Input';
 import style from './style.module.css';
 import { useDispatch } from 'react-redux';
-import { setAlert } from '../../../store/actions';
+import { setAlert, setLogin } from '../../../store/actions';
 
 const LoginContainer = () => {
     let dispatch = useDispatch();
@@ -27,11 +27,14 @@ const LoginContainer = () => {
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        axios.post('/auth/login/', formData)
+        axiosInstance.post('/auth/login/', formData)
             .then(res => {
                 const data = res.data;
-                localStorage.setItem('accessToken', data.access);
-                localStorage.setItem('refreshToken', data.refresh);
+                if (data.access) {
+                    localStorage.setItem('accessToken', data.access);
+                    localStorage.setItem('refreshToken', data.refresh);
+                    dispatch(setLogin());
+                }
             })
             .catch(err => {
                 let error = err.response.data;
