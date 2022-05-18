@@ -30,6 +30,7 @@ const SignupContainer = () => {
                 if (data.access) {
                     localStorage.setItem('accessToken', data.access);
                     localStorage.setItem('refreshToken', data.refresh);
+                    axiosInstance.defaults.headers['Authorization'] = 'Bearer ' + data.access;
                     dispatch(setLogin());
                 }
             })

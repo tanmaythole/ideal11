@@ -10,6 +10,7 @@ import PlayersContainer from './Containers/trading/PlayersContainer';
 import PortfolioContainer from './Containers/trading/PortfolioContainer';
 import ProfileContainer from './Containers/trading/ProfileContainer';
 import WalletContainer from './Containers/trading/WalletContainer';
+import './App.css';
 
 const App = () => {
   return (

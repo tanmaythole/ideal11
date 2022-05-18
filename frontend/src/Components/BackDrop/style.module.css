@@ -1,0 +1,9 @@
+.backdrop {
+    position: absolute;
+    top: 0;
+    /* left: 0; */
+    height: 100vh;
+    width: 548px;
+    z-index: 99;
+    background: rgba(59, 59, 59, 0.5);
+}

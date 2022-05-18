@@ -30,16 +30,16 @@ axiosInstance.interceptors.response.use(
         }
 
         if(error.response.data.code === 'token_not_valid' && error.response.status===401 && error.response.statusText==='Unauthorized'){
-            const refreshToken = localStorage.getItem('refresh_token');
+            const refreshToken = localStorage.getItem('refreshToken');
 
             if(refreshToken){
                 const exp = JSON.parse(atob(refreshToken.split('.')[1])).exp;
                 const now = Math.ceil(Date.now() / 1000);
                 if(exp > now){
                     return axiosInstance
-                            .post(`accounts/token/refresh/`, {refresh:refreshToken})
+                            .post(`auth/token/refresh/`, {refresh:refreshToken})
                             .then((res) => {
-                                localStorage.setItem('access_token', res.data.access);
+                                localStorage.setItem('accessToken', res.data.access);
 
                                 axiosInstance.defaults.headers['Authorization'] =
                                     'Bearer ' + res.data.access;
