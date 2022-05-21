@@ -43,3 +43,17 @@ export const setLogout = () => {
         type: 'LOGOUT'
     }
 }
+
+
+export const setPlayerData = (data) => {
+    return {
+        type: 'SET_PLAYER_DETAIL',
+        payload: data
+    }
+}
+
+export const resetPlayerData = () => {
+    return {
+        type: 'RESET_PLAYER_DETAIL'
+    }
+}

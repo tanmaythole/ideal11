@@ -4,7 +4,7 @@ import axiosInstance from '../../../axios';
 import AuthComponent from '../../../Components/AuthComponent';
 import Button from '../../../Components/Button';
 import Input from '../../../Components/Input';
-import { setAlert, setLogin } from '../../../store/actions';
+import { setAlert } from '../../../store/actions';
 import style from './style.module.css';
 
 const SignupContainer = () => {
@@ -24,15 +24,10 @@ const SignupContainer = () => {
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        axiosInstance.post('/api/signup/', formData)
+        axiosInstance.post('/auth/register/', formData)
             .then(res => {
                 let data = res.data;
-                if (data.access) {
-                    localStorage.setItem('accessToken', data.access);
-                    localStorage.setItem('refreshToken', data.refresh);
-                    axiosInstance.defaults.headers['Authorization'] = 'Bearer ' + data.access;
-                    dispatch(setLogin());
-                }
+                dispatch(setAlert({'type':'success', 'message':data.message}));
             })
             .catch(err => {
                 let error = err.response.data;

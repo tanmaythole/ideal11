@@ -5,7 +5,8 @@ const Button = (props) => {
     const styleComponent = {
         background: props.bg,
         color: props.color,
-        margin: props.margin
+        margin: props.margin,
+        border: props.border
     }
 
     return (

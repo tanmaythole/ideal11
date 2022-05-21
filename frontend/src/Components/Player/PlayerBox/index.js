@@ -1,8 +1,22 @@
 import React from 'react';
 import style from './style.module.css';
 import Button from '../../Button';
+import { useDispatch } from 'react-redux';
+import { setPlayerData } from '../../../store/actions';
 
-const PlayerBox = ({ data, handleToggleModal }) => {
+const PlayerBox = ({ data }) => {
+    let dispatch = useDispatch();
+
+    const onBuySellBtnClick = (type) => {
+        dispatch(setPlayerData(
+            { 
+                "type": type, 
+                "playerData": data,
+                "show": true
+            }
+        ));
+    }
+
     return (
         <div className={style.playerBox}>
             <div className={style.playerDetails}>
@@ -25,7 +39,7 @@ const PlayerBox = ({ data, handleToggleModal }) => {
                     <div>Bought : 0</div>
                     <Button 
                         margin='5px 0'
-                        onclick={() => handleToggleModal(data, 'Buy')}
+                        onclick={() => onBuySellBtnClick('buy')}
                     >
                         Buy &#8377;{data.buy_price}
                     </Button>
@@ -36,7 +50,7 @@ const PlayerBox = ({ data, handleToggleModal }) => {
                         bg="#D9C97787" 
                         color="#333" 
                         margin='5px 0'
-                        onclick={() => handleToggleModal(data, 'Sell')}
+                        onclick={() => onBuySellBtnClick('sell')}
                     >
                         Sell &#8377; {data.sell_price}
                     </Button>

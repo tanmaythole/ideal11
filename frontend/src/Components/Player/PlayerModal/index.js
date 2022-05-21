@@ -1,48 +1,53 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { resetPlayerData } from '../../../store/actions';
 import Button from '../../Button';
 import Modal from '../../Modal';
 import style from './style.module.css';
 
-const PlayerModal = ({ show, handleClose, data }) => {
-    const { type, playerData } = data;
-    const bg = type==='Sell'?"rgb(217 201 119 / 53%)":"";
-    const color = type==="Sell"?"#333":"";
+const PlayerModal = () => {
+    let dispatch = useDispatch();
+    const { show, type, playerData } = useSelector(state => state.playerDataReducer);
+    
 
     const [playerPricePerShare, setPlayerPricePerShare] = useState(0);
-    const [noOfShares, setNoOfShares] = useState(0);
+    const [noOfShares, setNoOfShares] = useState(1);
     const [platformFee, setPlatformFee] = useState();
     const [totalAmount, setTotalAmount] = useState();
 
 
     
-    const changeData = async() => {
-        const playerPrice = await type==='Sell'?playerData.sell_price:type==="Buy"?playerData.buy_price:0;
+    const changeData = async() => { 
+        const playerPrice = await type==='sell'?playerData.sell_price:type==="buy"?playerData.buy_price:0;
 
-        await setPlayerPricePerShare(playerPrice);
-        await setPlatformFee(playerPrice * noOfShares * 0.06);
-        await setTotalAmount(playerPrice * noOfShares + playerPrice * noOfShares * 0.06);
+        setPlayerPricePerShare(playerPrice);
+        setPlatformFee(playerPrice * noOfShares * 0.06);
+        setTotalAmount(playerPrice * noOfShares + playerPrice * noOfShares * 0.06);
     }
 
     useEffect(() => {
         changeData();
-    }, [noOfShares])
+    }, [noOfShares, show])
     
     const onClose = () => {
-        setNoOfShares(0);
+        setNoOfShares(1);
         setPlayerPricePerShare(0);
-        handleClose();
+        dispatch(resetPlayerData());
     }
     
 
     return (
         <Modal show={show}>
-            <Modal.Header bg={bg} color={color} onClose={onClose} >
-                {type} Player
+            <Modal.Header 
+                bg={type==='sell'?"rgb(217 201 119 / 53%)":""} 
+                color={type==='sell'?"#333":""} 
+                onClose={onClose} 
+            >
+                {type.length?type:""} Player
             </Modal.Header>
             <Modal.Body padding='0'>
-                {playerData?(
+                {Object.keys(playerData).length?(
                     <>
-                        {console.log(playerData)}
                         <div className={style.playerDetails}>
                             <img 
                                 src={`${process.env.REACT_APP_BACKEND_URL}${playerData.player.player.image}`} 
@@ -60,7 +65,7 @@ const PlayerModal = ({ show, handleClose, data }) => {
                         
                         <div className={style.priceContainer}>
                             <div>
-                                <span>Initial {data.type} Price</span>
+                                <span>Initial {type} Price</span>
                                 <h4>&#8377; {playerPricePerShare}</h4>
                             </div>
 
@@ -89,13 +94,17 @@ const PlayerModal = ({ show, handleClose, data }) => {
                                 <h4>&#8377; {totalAmount}</h4>
                             </div>
 
-                            <Button>
+                            <Button
+                                bg={type==='sell'?"rgb(217 201 119 / 53%)":""} 
+                                color={type==='sell'?"#333":""} 
+                                border="1px solid #333"
+                            >
                                 {type} Now
                             </Button>
                         </div>
                     </>
                 ):(
-                    <></>
+                   <></> 
                 )}
             </Modal.Body>
         </Modal>
