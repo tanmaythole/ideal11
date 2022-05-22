@@ -2,11 +2,13 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useNavigate, useSearchParams } from 'react-router-dom';
 import axiosInstance from '../../../axios';
+import PrimaryHeader from '../../../Components/AppHeader/PrimaryHeader';
 import Button from '../../../Components/Button';
 import MatchBox from '../../../Components/MatchBox';
 import MatchStatusNavigation from '../../../Components/MatchStatusNavigation';
 import NoDataComponent from '../../../Components/NoDataComponent';
 import SportsNavigation from '../../../Components/SportsNavigation';
+import TabFooter from '../../../Components/TabFooter';
 import { setMatches } from '../../../store/actions';
 
 const PortfolioContainer = () => {
@@ -39,7 +41,8 @@ const PortfolioContainer = () => {
     }
 
     return (
-        <div>
+        <>
+            <PrimaryHeader />
             <SportsNavigation />
             <div className='container'>
                 <MatchStatusNavigation />
@@ -56,7 +59,8 @@ const PortfolioContainer = () => {
                     </NoDataComponent>
                 )}
             </div>
-        </div>
+            <TabFooter />
+        </>
     )
 }
 

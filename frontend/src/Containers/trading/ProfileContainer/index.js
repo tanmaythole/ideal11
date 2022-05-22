@@ -1,10 +1,13 @@
 import React from 'react'
+import SecondaryHeader from '../../../Components/AppHeader/SecondaryHeader';
+import TabFooter from '../../../Components/TabFooter';
 
 const ProfileContainer = () => {
     return (
-        <div>
-            
-        </div>
+        <>
+            <SecondaryHeader>My profile</SecondaryHeader>
+            <TabFooter />
+        </>
     )
 }
 

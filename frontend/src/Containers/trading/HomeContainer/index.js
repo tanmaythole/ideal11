@@ -6,6 +6,8 @@ import axiosInstance from '../../../axios';
 import { setMatches } from '../../../store/actions';
 import MatchBox from '../../../Components/MatchBox';
 import NoDataComponent from '../../../Components/NoDataComponent';
+import PrimaryHeader from '../../../Components/AppHeader/PrimaryHeader';
+import TabFooter from '../../../Components/TabFooter';
 
 const HomeContainer = () => {
   let dispatch = useDispatch();
@@ -29,24 +31,26 @@ const HomeContainer = () => {
   
   
   return (
-      <div>
-          <SportsNavigation />
-          <div className='container'>
-            {matches.length?(
-              <div>
-                <h3>Upcoming Matches</h3>
-                {matches.map(e => {
-                  return <MatchBox data={e} key={e.id} from='home' />
-                })}
-              </div>
-            ):(
-              <NoDataComponent>
-                <h3>Stay Tuned!!</h3>
-                Matches will Open Shortly
-              </NoDataComponent>
-            )}
-          </div>
-      </div>
+      <>
+        <PrimaryHeader />
+        <SportsNavigation />
+        <div className='container'>
+          {matches.length?(
+            <div>
+              <h3>Upcoming Matches</h3>
+              {matches.map(e => {
+                return <MatchBox data={e} key={e.id} from='home' />
+              })}
+            </div>
+          ):(
+            <NoDataComponent>
+              <h3>Stay Tuned!!</h3>
+              Matches will Open Shortly
+            </NoDataComponent>
+          )}
+        </div>
+        <TabFooter />
+      </>
     )
 }
 

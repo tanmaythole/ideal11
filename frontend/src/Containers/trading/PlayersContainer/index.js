@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axiosInstance from '../../../axios';
+import SecondaryHeader from '../../../Components/AppHeader/SecondaryHeader';
 import MatchDetailHeader from '../../../Components/MatchDetailHeader';
 import PlayerBox from '../../../Components/Player/PlayerBox';
 import PlayerModal from '../../../Components/Player/PlayerModal';
@@ -33,6 +34,7 @@ const PlayersContainer = () => {
     
     return loader?("Loading"):(
         <div>
+            <SecondaryHeader />
             <MatchDetailHeader data={matchDetails} />
             <PlayerModal />
             <div className='container'>

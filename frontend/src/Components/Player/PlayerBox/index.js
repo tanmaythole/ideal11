@@ -26,7 +26,7 @@ const PlayerBox = ({ data }) => {
                     className={style.playerImage}
                 />
                 <div style={{padding: "0 10px"}}>
-                    <h4>{data.player.player.name}</h4>
+                    <h4>{data.player.player.short_name}</h4>
                     <p>{data.player.player.role}</p>
                     <div className={style.teamNameBlock}>
                         {data.player.team.short_name}

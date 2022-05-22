@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
+import SecondaryHeader from '../../../Components/AppHeader/SecondaryHeader';
+import TabFooter from '../../../Components/TabFooter';
 
 const WalletContainer = () => {
     useEffect(() => {
@@ -6,9 +8,10 @@ const WalletContainer = () => {
     }, [])
     
     return (
-        <div className='container'>
-            
-        </div>
+        <>
+            <SecondaryHeader>Wallet</SecondaryHeader>
+            <TabFooter />
+        </>
     )
 }
 
