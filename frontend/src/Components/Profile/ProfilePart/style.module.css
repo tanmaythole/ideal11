@@ -1,0 +1,12 @@
+.profilePart {
+    padding: 10px 0;
+    width: 100%;
+}
+.titleBar {
+    background: #C4C4C4;
+    text-align: center;
+    color: #424242;
+}
+.content {
+    padding: 10px 0;
+}

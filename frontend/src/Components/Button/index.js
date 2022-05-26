@@ -6,7 +6,9 @@ const Button = (props) => {
         background: props.bg,
         color: props.color,
         margin: props.margin,
-        border: props.border
+        border: props.border,
+        borderRadius: props.br,
+        padding: props.pad
     }
 
     return (

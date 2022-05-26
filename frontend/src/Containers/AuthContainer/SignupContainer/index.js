@@ -44,7 +44,7 @@ const SignupContainer = () => {
         )
     }
     return (
-        <div className='container'>
+        <>
             <AuthComponent>
                 <h1 style={{textAlign: "center"}}><span style={{color: "#6c6c6c"}}>Join</span><br /> MyIdeal-11</h1>
                 <form className={style.form} onSubmit={handleOnSubmit}>
@@ -95,7 +95,7 @@ const SignupContainer = () => {
                     </Button>
                 </form>
             </AuthComponent>
-        </div>
+        </>
     )
 }
 

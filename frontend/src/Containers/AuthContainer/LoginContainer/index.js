@@ -44,7 +44,7 @@ const LoginContainer = () => {
     }
     
     return (
-        <div className='container'>
+        <>
             <AuthComponent>
                 <h1>Login</h1>
                 <form className={style.form} onSubmit={handleOnSubmit}>
@@ -67,7 +67,7 @@ const LoginContainer = () => {
                     </Button>
                 </form>
             </AuthComponent>
-        </div>
+        </>
     )
 }
 

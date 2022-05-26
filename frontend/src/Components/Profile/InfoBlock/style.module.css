@@ -1,0 +1,12 @@
+.infoBlock {
+    width: 50% !important;
+    margin: 10px;
+    padding: 10px;
+}
+.title {
+    color: #383838;
+}
+.property {
+    color: #000000;
+    font-size: 19px;
+}

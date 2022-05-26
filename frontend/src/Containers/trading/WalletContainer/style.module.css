@@ -1,0 +1,30 @@
+.WalletContainer {
+    padding: 10px;
+    margin: 10px;
+    background: #FFFFFF99;
+    border-radius: 5px;
+    color: #333;
+    text-transform: uppercase;
+}
+.WalletContainerHeader {
+    padding-top: 15px;
+    text-align: center;
+}
+.amtTypesection {
+    border-top: 1px solid #a8a8a8;
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.blocks {
+    padding: 15px 10px;
+    margin: 20px 10px;
+    background: #FFFFFF99;
+    border-radius: 5px;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}

@@ -1,0 +1,18 @@
+.statCard {
+    width: 50%;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    background: #FFFFFF99;
+}
+.statCardIcon {
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+}
+.statCardContent {
+    display: flex;
+    flex-direction: column;
+}
