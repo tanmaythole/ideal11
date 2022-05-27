@@ -4,12 +4,19 @@ import SecondaryHeader from '../../../Components/AppHeader/SecondaryHeader';
 import Button from '../../../Components/Button';
 import style from './style.module.css';
 import { MdArrowRight } from 'react-icons/md'
+import Modal from '../../../Components/Modal';
+import { useDispatch } from 'react-redux';
+import { setAlert } from '../../../store/actions';
 
 const WalletContainer = () => {
     const [wallet, setWallet] = useState({});
     const [loading, setLoading] = useState(true);
+    const [show, setShow] = useState(false);
+    const [amtToBeAdd, setAmtToBeAdd] = useState(0);
 
-    useEffect(() => {
+    let dispatch = useDispatch();
+
+    const getData = () => {
         setLoading(true);
         axiosInstance
             .get('/auth/wallet/')
@@ -20,12 +27,49 @@ const WalletContainer = () => {
             .catch(err => {
                 console.log(err);
             })
+    }
+
+    useEffect(() => {
+        getData();
     }, [])
     
-    
+    const handleAddCash = () => {
+        axiosInstance
+            .patch('/auth/wallet/', {deposited:amtToBeAdd})
+            .then(res => {
+                setShow(false);
+                dispatch(setAlert({'type':'success', 'message':res.data.message}));
+                getData();
+            })
+            .catch(err => {
+                setShow();
+                dispatch(setAlert({'type':'danger', 'message':"Something Went Wrong!"}));
+            })
+        
+    }
+
     return (
         <>
             <SecondaryHeader>Wallet</SecondaryHeader>
+            <Modal show={show}>
+                <Modal.Header onClose={() => setShow(false)}>Add Cash</Modal.Header>
+                <Modal.Body>
+                    <label>Amount to be Add</label>
+                    <input 
+                        className={style.input}
+                        type="number"
+                        value={amtToBeAdd}
+                        name="amtToBeAdd"
+                        onChange={(e) => setAmtToBeAdd(e.target.value)}
+                    />
+                    <Button
+                        br="5px"
+                        onclick={handleAddCash}
+                    >
+                        Add Money
+                    </Button>
+                </Modal.Body>
+            </Modal>
             {loading?(
                 <></>
             ):(
@@ -34,7 +78,7 @@ const WalletContainer = () => {
                         <div className={style.WalletContainerHeader}>
                             <h3>Total Balance</h3>
                             <h2>&#8377; {wallet.total}</h2>
-                            <Button bg="green" br="5px" pad="5px 15px">
+                            <Button bg="green" br="5px" pad="5px 15px" onclick={() => setShow(true)}>
                                 Add Cash
                             </Button>
                         </div>

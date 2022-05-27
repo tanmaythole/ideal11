@@ -4,7 +4,7 @@ import Button from '../../Button';
 import { useDispatch } from 'react-redux';
 import { setPlayerData } from '../../../store/actions';
 
-const PlayerBox = ({ data }) => {
+const PlayerBox = ({ data, from, trade_details }) => {
     let dispatch = useDispatch();
 
     const onBuySellBtnClick = (type) => {
@@ -34,28 +34,40 @@ const PlayerBox = ({ data }) => {
                 </div>
             </div>
 
-            <div className={style.playerPrice}>
-                <div className={style.playerBuy}>
-                    <div>Bought : 0</div>
-                    <Button 
-                        margin='5px 0'
-                        onclick={() => onBuySellBtnClick('buy')}
-                    >
-                        Buy &#8377;{data.buy_price}
-                    </Button>
-                </div>
-                <div className={style.playerSell}>
-                    <div>Sell : 0</div>
-                    <Button 
-                        bg="#D9C97787" 
-                        color="#333" 
-                        margin='5px 0'
-                        onclick={() => onBuySellBtnClick('sell')}
-                    >
-                        Sell &#8377; {data.sell_price}
-                    </Button>
-                </div>
-            </div>
+            {from==='portfolio'?(
+                <>
+                    <div className={`${style.bottomBlock} ${trade_details.trade_type==='buy'?style.bottomBlockBuy:style.bottomBlockSell}`}>
+                        <p>{trade_details.trade_type==='buy'?"Bought":"Sold"}: {trade_details.no_of_shares} @ {trade_details.trade_type==='buy'?trade_details.player.buy_price:trade_details.player.sell_price}</p>
+                        <p>Total Points: {trade_details.player.total_points}</p>
+                        <p>Winnings: {trade_details.winning}</p>
+                    </div>
+                </>
+            ):(
+                <>
+                    <div className={style.playerPrice}>
+                        <div className={style.playerBuy}>
+                            <div>Bought : 0</div>
+                            <Button 
+                                margin='5px 0'
+                                onclick={() => onBuySellBtnClick('buy')}
+                            >
+                                Buy &#8377;{data.buy_price}
+                            </Button>
+                        </div>
+                        <div className={style.playerSell}>
+                            <div>Sell : 0</div>
+                            <Button 
+                                bg="#D9C97787" 
+                                color="#333" 
+                                margin='5px 0'
+                                onclick={() => onBuySellBtnClick('sell')}
+                            >
+                                Sell &#8377; {data.sell_price}
+                            </Button>
+                        </div>
+                    </div>
+                </>
+            )}
         </div>
     )
 }

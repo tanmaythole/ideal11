@@ -1,23 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import axiosInstance from '../../../axios';
 import SecondaryHeader from '../../../Components/AppHeader/SecondaryHeader';
 import MatchDetailHeader from '../../../Components/MatchDetailHeader';
 import PlayerBox from '../../../Components/Player/PlayerBox';
-import PlayerModal from '../../../Components/Player/PlayerModal';
-import style from './style.module.css';
 
-const PlayersContainer = () => {
+const PortfolioPlayers = () => {
     const { match } = useParams();
 
     const [loader, setLoader] = useState(true);
     const [players, setPlayers] = useState([]);
     const [matchDetails, setMatchDetails] = useState({});
 
-
-
     useEffect(() => {
-        axiosInstance.get('/api/players/', {
+        axiosInstance.get('/api/transactions/', {
             params: {
                 match: match
             }
@@ -26,21 +22,22 @@ const PlayersContainer = () => {
             setPlayers(res.data.data);
             setMatchDetails(res.data.match);
             setLoader(false);
+            console.log(res.data.data)
         })
         .catch(err => {
-            console.log(err);
+            console.log(err.response);
         })
     }, [])
     
-    return loader?("Loading"):(
+
+    return loader?<></>:(
         <div>
             <SecondaryHeader />
             <MatchDetailHeader data={matchDetails} />
-            <PlayerModal match={match} />
             <div className='container'>
-                <div className={style.playerContainer}>
+                <div>
                     {players.map(e => {
-                        return <PlayerBox data={e} key={e.id} />
+                        return <PlayerBox data={e.player} trade_details={e} key={e.id} from="portfolio" trade_type={e.trade_type} />
                     })}
                 </div>
             </div>
@@ -48,4 +45,4 @@ const PlayersContainer = () => {
     )
 }
 
-export default PlayersContainer;
+export default PortfolioPlayers;

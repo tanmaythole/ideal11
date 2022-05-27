@@ -11,6 +11,7 @@ import PortfolioContainer from './Containers/trading/PortfolioContainer';
 import ProfileContainer from './Containers/trading/ProfileContainer';
 import WalletContainer from './Containers/trading/WalletContainer';
 import './App.css';
+import PortfolioPlayers from './Containers/trading/PortfolioContainer/PortfolioPlayers';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route path='/trading' element={<HomeContainer />} />
           <Route path='/trading/:scat/:match' element={<PlayersContainer />} />
           <Route path='/trading/portfolio' element={<PortfolioContainer />} />
+          <Route path='/trading/portfolio/:scat/:match' element={<PortfolioPlayers />} />
           <Route path='/profile' element={<ProfileContainer />} />
           <Route path='/wallet' element={<WalletContainer />} />
         </Route>

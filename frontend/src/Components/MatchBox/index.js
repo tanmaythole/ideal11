@@ -8,7 +8,7 @@ const MatchBox = ({ data, from }) => {
 
     const handleClick = () => {
         if(from==='portfolio'){
-            // redirect to match details
+            navigate(`/trading/portfolio/cricket/${data.id}`)
         } else {
             navigate(`/trading/cricket/${data.id}`)
         }

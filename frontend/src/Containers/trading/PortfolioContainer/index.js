@@ -22,7 +22,7 @@ const PortfolioContainer = () => {
     let matches = useSelector(state => state.matchesReducer)
     
     useEffect(() => {
-        axiosInstance.get('/api/matches/', {
+        axiosInstance.get('/api/portfolio/matches/', {
             params: {
                 sport: currSport,
                 type: matchStatus

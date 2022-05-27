@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { resetPlayerData } from '../../../store/actions';
+import axiosInstance from '../../../axios';
+import { resetPlayerData, setAlert } from '../../../store/actions';
 import Button from '../../Button';
 import Modal from '../../Modal';
 import style from './style.module.css';
 
-const PlayerModal = () => {
+const PlayerModal = ({ match }) => {
     let dispatch = useDispatch();
     const { show, type, playerData } = useSelector(state => state.playerDataReducer);
     
@@ -35,6 +36,24 @@ const PlayerModal = () => {
         dispatch(resetPlayerData());
     }
     
+    const handleSubmit = () => {
+        axiosInstance
+            .post('/api/transactions/', {
+                "match": match,
+                "player": playerData.id,
+                "trade_type": type,
+                "no_of_shares": noOfShares,
+                "price": totalAmount
+            })
+            .then(res => {
+                dispatch(setAlert({'type':'success', 'message': "Transaction Successful!"}));
+                onClose();
+            })
+            .catch(err => {
+                dispatch(setAlert({'type':'danger', 'message': err.response.data.error.non_field_errors[0]}));
+                onClose();
+            })
+    }
 
     return (
         <Modal show={show}>
@@ -98,6 +117,7 @@ const PlayerModal = () => {
                                 bg={type==='sell'?"rgb(217 201 119 / 53%)":""} 
                                 color={type==='sell'?"#333":""} 
                                 border="1px solid #333"
+                                onclick={handleSubmit}
                             >
                                 {type} Now
                             </Button>
