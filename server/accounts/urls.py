@@ -20,4 +20,5 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
     path("wallet/", WalletAPI.as_view()),
+    path("profile/", UserAPI.as_view()),
 ]

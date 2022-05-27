@@ -1,4 +1,5 @@
 from django.urls import path
+
 from .views import *
 
 urlpatterns = [
@@ -7,4 +8,7 @@ urlpatterns = [
     path('teams/', TeamsAPI.as_view(), name="Teams"),
     path('matches/', MatchesAPI.as_view(), name="Matches"),
     path('players/', PlayersAPI.as_view(), name="Players"),
+    path('transactions/', TransactionsAPI.as_view(), name="Transactions"),
+
+    path('portfolio/matches/', PortfolioMatchesAPI.as_view(), name="Portfolio Matches"),
 ]

@@ -55,10 +55,13 @@ class CricketPlayersForMatch(models.Model):
     is_duck = models.BooleanField(default=False)
     is_out = models.BooleanField(default=False)
     overs_bowled = models.FloatField(default=0.0)
+    runs_given = models.IntegerField(default=0.0)
     wickets = models.IntegerField(default=0)
     maiden_over = models.IntegerField(default=0)
     economy = models.FloatField(default=0.0)
     catch = models.IntegerField(default=0)
+    stumping = models.IntegerField(default=0)
+    run_out = models.IntegerField(default=0)
     total_points = models.FloatField(default=0.0)
 
     def __str__(self):
@@ -67,3 +70,58 @@ class CricketPlayersForMatch(models.Model):
     class Meta:
         verbose_name = "Cricket Player For Match (points)"
         verbose_name_plural = "Cricket Players For Match (Points)"
+
+    def cnt_balls_from_overs(self, overs):
+        overs = str(overs).split(".")
+        balls = int(overs[0])*6 + int(overs[1])
+        return balls
+
+    def save(self):        
+        if self.balls_faced==0:
+            self.strike_rate=0
+        else:
+            self.strike_rate = self.runs/self.balls_faced
+
+        if self.overs_bowled==0.0:
+            self.economy = 0
+        else:
+            self.economy = self.runs_given/self.cnt_balls_from_overs(self.overs_bowled)
+        
+        total_points = 0
+        if self.is_playing:
+            total_points += 4
+        
+        total_points += self.runs*1 + self.fours*1 + self.sixes*2 + self.wickets*25 + self.maiden_over*12 + self.catch*8 + self.run_out*12 + self.stumping*12
+
+        if self.strike_rate>170:
+            total_points += 6
+        elif self.strike_rate>150:
+            total_points += 4
+        elif self.strike_rate>130:
+            total_points += 2
+        elif self.strike_rate < 50:
+            total_points -= 6
+        elif self.strike_rate < 60:
+            total_points -= 4
+        elif self.strike_rate < 70:
+            total_points -= 2
+
+        if self.is_duck:
+            total_points -= 2
+        
+
+        if self.economy<5:
+            total_points += 6
+        elif self.economy<6:
+            total_points += 4
+        elif self.economy<7:
+            total_points += 2
+        elif self.economy>12:
+            total_points -= 6
+        elif self.economy>11:
+            total_points -= 4
+        elif self.economy>10:
+            total_points -= 2
+        
+        self.total_points = total_points
+        return super(CricketPlayersForMatch, self).save()

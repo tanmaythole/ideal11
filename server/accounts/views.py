@@ -1,3 +1,4 @@
+import re
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from accounts.serializers import UserSerializer, WalletSerializer
@@ -26,6 +27,15 @@ class UserRegisterAPI(APIView):
             return Response({
                 'errors': 'something went wrong'
             })
+
+class UserAPI(APIView):
+    def get(self, request):
+        try:
+            serializer = UserSerializer(request.user)
+            return Response({"status":"ok", "data":serializer.data}, 200)
+
+        except Exception as e:
+            return Response({"error": str(e)}, 400)
 
 class VerifyEmail(APIView):
     def get(self, request, token):
@@ -155,3 +165,19 @@ class WalletAPI(APIView):
         user = Wallet.objects.get(user=request.user)
         serializer = WalletSerializer(user)
         return Response(serializer.data)
+    
+    def patch(self, request):
+        try:
+            data = request.data
+            data['user'] = request.user.id
+            wallet = Wallet.objects.get(user=request.user)
+            serializer = WalletSerializer(wallet, data=data)
+
+            if not serializer.is_valid():
+                return Response({"error": serializer.errors}, 400)
+            
+            serializer.save()
+
+            return Response({"status": "ok", "message": "Amount Added Successfully!"}, 200)
+        except Exception as e:
+            return Response(str(e), 400)

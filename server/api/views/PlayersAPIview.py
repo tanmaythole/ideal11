@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from api.serializers import PlayerForMatchSerializer
 from application.models import CricketPlayersForMatch
+from application.models.TransactionsModel import Transactions
 
 class PlayersAPI(APIView):
     permission_classes = (IsAuthenticated, )

@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 from .models import *
 
 # Register your models here.
@@ -141,3 +142,24 @@ class CricketPlayersForMatchAdmin(admin.ModelAdmin):
         ),
         ('Points', {'fields': ('total_points',)})
     )
+
+@admin.register(Transactions)
+class TransactionsAdmin(admin.ModelAdmin):
+    search_fields = [
+        'user__first_name',
+        'user__last_name',
+        'user__username',
+        'match__home_team__name',
+        'match__home_team__short_name',
+        'match__series__name',
+        'player__player__player__name',
+        'player__player__player__short_name'
+    ]
+
+    list_display = [
+        'id',
+        'match',
+        'player',
+        'trade_type',
+        'no_of_shares'
+    ]
