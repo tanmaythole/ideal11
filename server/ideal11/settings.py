@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'accounts',
     'api',
     'application',
+    'playerPrediction',
 ]
 
 MIDDLEWARE = [

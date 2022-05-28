@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 
 from .views import *
 
@@ -11,4 +11,6 @@ urlpatterns = [
     path('transactions/', TransactionsAPI.as_view(), name="Transactions"),
 
     path('portfolio/matches/', PortfolioMatchesAPI.as_view(), name="Portfolio Matches"),
+
+    path('prediction/', include('playerPrediction.urls')),
 ]
