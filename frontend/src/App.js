@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import AlertMessage from './Components/AlertMessage';
 import AuthContainer from './Containers/AuthContainer';
 import LoginContainer from './Containers/AuthContainer/LoginContainer';
@@ -30,6 +30,7 @@ const App = () => {
             <Route path='/profile' element={<ProfileContainer />} />
             <Route path='/wallet' element={<WalletContainer />} />
             <Route path='/prediction' element={<PredictionContainer />} />
+            <Route path='/' element={<Navigate to='/trading' />} />
           </Route>
 
           <Route path='/' element={<AuthContainer />}>
