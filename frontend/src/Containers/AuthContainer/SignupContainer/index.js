@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import axiosInstance from '../../../axios';
 import AuthComponent from '../../../Components/AuthComponent';
 import Button from '../../../Components/Button';
@@ -93,6 +94,7 @@ const SignupContainer = () => {
                     <Button>
                         Sign Up
                     </Button>
+                    <Link to="/login" style={{color:'#fff', fontStyle:'italic'}}>Already Have An Account?</Link>
                 </form>
             </AuthComponent>
         </>

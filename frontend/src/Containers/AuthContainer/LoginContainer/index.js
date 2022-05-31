@@ -6,6 +6,7 @@ import Input from '../../../Components/Input';
 import style from './style.module.css';
 import { useDispatch } from 'react-redux';
 import { setAlert, setLogin } from '../../../store/actions';
+import { Link } from 'react-router-dom';
 
 const LoginContainer = () => {
     let dispatch = useDispatch();
@@ -65,6 +66,7 @@ const LoginContainer = () => {
                     <Button>
                         Login
                     </Button>
+                    <Link to="/signup" style={{color: "#fff", fontStyle:"italic"}}>New User?</Link>
                 </form>
             </AuthComponent>
         </>
