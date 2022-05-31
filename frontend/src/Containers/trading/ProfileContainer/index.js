@@ -56,7 +56,7 @@ const ProfileContainer = () => {
                                     />
                                 </StatCard.Icon>
                                 <StatCard.Content>
-                                    <h3>1</h3>
+                                    <h3>2</h3>
                                     <div>Matches Played</div>
                                 </StatCard.Content>
                             </StatCard>
@@ -67,7 +67,7 @@ const ProfileContainer = () => {
                                     />
                                 </StatCard.Icon>
                                 <StatCard.Content>
-                                    <h3>50</h3>
+                                    <h3>0</h3>
                                     <div>Winnings</div>
                                 </StatCard.Content>
                             </StatCard>

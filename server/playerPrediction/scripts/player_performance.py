@@ -95,11 +95,11 @@ def player_performance(param,player_name,opposition=None,venue=None):
 
             #Categorizing Opposition and Venue
             le.fit(bat_features.loc[:,'opposition'])
-            opp_bat = le.transform([opposition])
-            bat_features.loc[:,'opposition'] = le.transform(bat_features.loc[:,'opposition'])
+            opp_bat = le.fit_transform([opposition])
+            bat_features.loc[:,'opposition'] = le.fit_transform(bat_features.loc[:,'opposition'])
             le.fit(bat_features.loc[:,'venue'])
-            ven_bat = le.transform([venue])
-            bat_features.loc[:,'venue'] = le.transform(bat_features.loc[:,'venue'])
+            ven_bat = le.fit_transform([venue])
+            bat_features.loc[:,'venue'] = le.fit_transform(bat_features.loc[:,'venue'])
 
             predict_bat = bat_overall_details[['innings','average','strike_rate','centuries','fifties','zeros']].values[0]
 
@@ -212,11 +212,11 @@ def player_performance(param,player_name,opposition=None,venue=None):
         
             #Categorizing Opposition and Venue
             le.fit(bowl_features['opposition'])
-            opp_bowl = le.transform([opposition])
-            bowl_features['opposition'] = le.transform(bowl_features['opposition'])
+            opp_bowl = le.fit_transform([opposition])
+            bowl_features['opposition'] = le.fit_transform(bowl_features['opposition'])
             le.fit(bowl_features['venue'])
-            ven_bowl = le.transform([venue])
-            bowl_features['venue'] = le.transform(bowl_features['venue'])
+            ven_bowl = le.fit_transform([venue])
+            bowl_features['venue'] = le.fit_transform(bowl_features['venue'])
 
             predict_bowl = bowl_overall_details[['innings','average','strike_rate','economy','wicket_hauls']].values[0]
 

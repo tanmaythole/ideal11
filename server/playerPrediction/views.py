@@ -108,5 +108,5 @@ def prediction(request):
     # if "bowl_prediction" in res:
     #     print(f'Number of predicted wickets:{res["bowl_prediction"]}')
     # exit()
-    print(res)
+    # print(res)
     return HttpResponse(json.dumps(res), content_type="application/json")

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaEllipsisH, FaHome, FaShoppingBag, FaUserAlt } from 'react-icons/fa';
+import { FaHome, FaSearchengin, FaShoppingBag, FaUserAlt } from 'react-icons/fa';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './style.css'
 
@@ -17,8 +17,8 @@ const TabFooter = () => {
                 navigate('/profile');
                 break;
 
-            case 'more':
-                navigate('/more');
+            case 'prediction':
+                navigate('/prediction');
                 break;
 
             default:
@@ -56,13 +56,13 @@ const TabFooter = () => {
                 <span>My profile</span>
             </div>
 
-            <div className={`tabSection ${location.pathname==='/more'?'active':''}`} onClick={() => TabChange('more')}>
+            <div className={`tabSection ${location.pathname==='/prediction'?'active':''}`} onClick={() => TabChange('prediction')}>
                 <div className="icon">  
-                    <FaEllipsisH 
+                    <FaSearchengin 
                         size={22}
                     />
                 </div>
-                <span>More</span>
+                <span>Prediction</span>
             </div>
         </div>
     )

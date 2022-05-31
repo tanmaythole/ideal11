@@ -14,6 +14,7 @@ const Button = (props) => {
     return (
         <div>
             <button 
+                {...props}
                 className={`${style.btn}`} 
                 style={styleComponent} 
                 onClick={props.onclick || null}

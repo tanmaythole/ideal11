@@ -8,3 +8,7 @@
     background: #7e37db;
     color: #fff;
 }
+.btn:disabled{
+    opacity: .7;
+    cursor: auto;
+}
