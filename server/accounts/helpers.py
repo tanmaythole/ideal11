@@ -1,6 +1,8 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.mail import send_mail
+
+from ideal11.settings import FRONTEND_URL
 from .models import User
 import uuid
 from django.conf import settings
@@ -40,7 +42,7 @@ def send_mail_link(instance):
         if not token:
             return False
         subject = "MyIdeal11 : Activate Your New Account!"
-        message = f"Hii {instance.first_name}, Welcome to MyIdeal11! Confirm your email by click the link below <br /><a href='http://127.0.0.1:8000/auth/verify-email/{token}'>Click Here</a>"
+        message = f"Hii {instance.first_name}, Welcome to MyIdeal11! Confirm your email by click the link below <br /><a href='{FRONTEND_URL}/verify/{token}'>Click Here</a>"
         email_from = settings.EMAIL_HOST_USER
         recipient_list = [instance.email]
         send_mail(subject, message, email_from, recipient_list)
@@ -53,7 +55,7 @@ def send_forgotPassword_mail(user):
     try:
         token = create_verification_code(user, "ForgotPassword")
         subject = "MyIdeal11 : Reset Your Password!"
-        message = f"Hii {user.first_name}, Welcome to MyIdeal11! Confirm your email by click the link below <br /><a href='http://127.0.0.1:8000/reset-password/?token={token}'>Click Here</a>"
+        message = f"Hii {user.first_name}, Welcome to MyIdeal11! Confirm your email by click the link below <br /><a href='{FRONTEND_URL}/reset-password/?token={token}'>Click Here</a>"
         email_from = settings.EMAIL_HOST_USER
         recipient_list = [user.email]
         send_mail(subject, message, email_from, recipient_list)

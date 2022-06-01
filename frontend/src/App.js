@@ -13,6 +13,7 @@ import WalletContainer from './Containers/trading/WalletContainer';
 import './App.css';
 import PortfolioPlayers from './Containers/trading/PortfolioContainer/PortfolioPlayers';
 import PredictionContainer from './Containers/trading/PredictionConatiner';
+import VerifyEmail from './Containers/AuthContainer/VerifyEmail';
 
 const App = () => {
   return (
@@ -36,6 +37,7 @@ const App = () => {
           <Route path='/' element={<AuthContainer />}>
             <Route path='/login' element={<LoginContainer />} />
             <Route path='/signup' element={<SignupContainer />} />
+            <Route path='/verify/:token' element={<VerifyEmail />} />
           </Route>
         </Routes>
       </div>

@@ -164,6 +164,9 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = str(os.getenv('EMAIL_HOST_USER'))
 EMAIL_HOST_PASSWORD = str(os.getenv('EMAIL_HOST_PASSWORD'))
 
+FRONTEND_URL = str(os.getenv('FRONTEND_URL'))
+
+
 # Cors
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",

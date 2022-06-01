@@ -59,6 +59,7 @@ class Wallet(models.Model):
     
     def add_amount(self, amtToBeAdd, *args, **kwargs):
         self.deposited += amtToBeAdd
+        self.total = self.deposited + self.winnings + self.bonus
         return super(Wallet, self).save(*args, **kwargs)
 
     def __str__(self):

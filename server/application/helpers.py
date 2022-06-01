@@ -9,7 +9,7 @@ def onMatchSave(sender, instance, created, **kwargs):
         home_team_players = TeamPlayers.objects.filter(team=instance.home_team)
         away_team_players = TeamPlayers.objects.filter(team=instance.away_team)
         for i in home_team_players:
-            CricketPlayersForMatch(match=instance, player=i).save()
+            CricketPlayersForMatch(match=instance, player=i, no_of_shares_for_buy=50, no_of_shares_for_sell=50).save()
         for i in away_team_players:
             CricketPlayersForMatch(match=instance, player=i).save()
     
